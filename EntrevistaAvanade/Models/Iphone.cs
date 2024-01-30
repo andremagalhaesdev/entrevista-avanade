@@ -7,13 +7,13 @@ namespace EntrevistaAvanade.Models
 {
     public class Iphone : Smartphone
     {
-        public bool iPhoneComJailBreak { get; set; } = false;
-        public bool sistemaIntegro { get; set; } = true;
+        private bool IphoneComJailBreak { get; set; } = false;
+        private bool SistemaIntegro { get; set; } = true;
 
 
-        public Iphone(string numero, string modelo, string imei, int memoria, List<string> aplicativosInstalados, List<string> blackListAnatel, List<Veiculo> veiculoEstacionado) : base(numero, modelo, imei, memoria, aplicativosInstalados, blackListAnatel, veiculoEstacionado)
+        public Iphone(string numeroTelefone, string modeloTelefone, string imeiTelefone, int memoriaTelefone, List<string> aplicativosInstalados, List<string> blackListAnatel, List<Veiculo> VeiculosEstacionados) : base(numeroTelefone, modeloTelefone, imeiTelefone, memoriaTelefone, aplicativosInstalados, blackListAnatel, VeiculosEstacionados)
         {
-            iPhoneComJailBreak = false;
+            IphoneComJailBreak = false;
             CarregarAplicativosInstalados();
         }
 
@@ -25,7 +25,7 @@ namespace EntrevistaAvanade.Models
             bool menuIphone = true;
             while (menuIphone)
             {
-                if (sistemaIntegro)
+                if (SistemaIntegro)
                 {
                     Console.WriteLine("╔══════════════════╗");
                     Console.WriteLine("║    Menu iPhone   ║");
@@ -96,7 +96,7 @@ namespace EntrevistaAvanade.Models
                                 else if (opcaoLojaAppStore == "-do jailbreak -thisiphone --force")
                                 {
                                     RealizarJailBreakNoIphone();
-                                    if (sistemaIntegro == false)
+                                    if (SistemaIntegro == false)
                                     {
                                         menuAppStore = false;
                                     }
@@ -147,7 +147,7 @@ namespace EntrevistaAvanade.Models
                     Console.ReadLine();
                 }
             }
-            else if (!aplicativoCertificado && iPhoneComJailBreak)
+            else if (!aplicativoCertificado && IphoneComJailBreak)
             {
                 Console.WriteLine($"Instalando aplicativo \"/{nomeApp}/\" via JailBreak no iPhone.");
                 AplicativosInstalados.Add(nomeApp);
@@ -162,7 +162,7 @@ namespace EntrevistaAvanade.Models
             }
         }
 
-        private void DesinstalarAplicativo(string nomeApp)
+        public override void DesinstalarAplicativo(string nomeApp)
         {
             if (AplicativosInstalados.Contains(nomeApp))
             {
@@ -182,7 +182,7 @@ namespace EntrevistaAvanade.Models
             }
         }
 
-        private void CarregarAplicativosInstalados()
+        public override void CarregarAplicativosInstalados()
         {
             int tamanhoAplicativoPadrao = 16;
             int quantidadeMaximaAplicativos = Memoria / tamanhoAplicativoPadrao;
@@ -203,7 +203,7 @@ namespace EntrevistaAvanade.Models
             Thread.Sleep(2000);
             Console.WriteLine("Iniciando software...");
             Thread.Sleep(2000);
-            if (!iPhoneComJailBreak)
+            if (!IphoneComJailBreak)
             {
                 Console.WriteLine("O processo de JailBreak é arriscado e pode danificar seu iPhone. Deseja continuar? (S/N)");
                 string desejarContinuarJailBreak = Console.ReadLine();
@@ -217,13 +217,13 @@ namespace EntrevistaAvanade.Models
                     if (chanceDeSucesso <= 0.1) // 10% de chance de sucesso
                     {
                         Console.WriteLine("JailBreak realizado com sucesso!");
-                        iPhoneComJailBreak = true;
+                        IphoneComJailBreak = true;
                         Console.ReadLine();
                     }
                     else
                     {
                         Console.WriteLine("12%%#*@@!AA2(&#&^@@$ ERROR - SYSTEM NOT FOUND 11723^^q%%@@*!&&^%$@)");
-                        sistemaIntegro = false;
+                        SistemaIntegro = false;
                         Console.ReadLine();
                     }
                 }

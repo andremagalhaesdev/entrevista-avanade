@@ -7,7 +7,7 @@ namespace EntrevistaAvanade.Models
 {
     public class Android : Smartphone
     {
-        public Android(string numero, string modelo, string imei, int memoria, List<string> aplicativosInstalados, List<string> blackListAnatel, List<Veiculo> veiculoEstacionado) : base(numero, modelo, imei, memoria, aplicativosInstalados, blackListAnatel, veiculoEstacionado)
+        public Android(string numeroTelefone, string modeloTelefone, string imeiTelefone, int memoriaTelefone, List<string> aplicativosInstalados, List<string> blackListAnatel, List<Veiculo> VeiculosEstacionados) : base(numeroTelefone, modeloTelefone, imeiTelefone, memoriaTelefone, aplicativosInstalados, blackListAnatel, VeiculosEstacionados)
         {
             CarregarAplicativosInstalados();
         }
@@ -101,7 +101,7 @@ namespace EntrevistaAvanade.Models
 
         }
 
-        private void CarregarAplicativosInstalados()
+        public override void CarregarAplicativosInstalados()
         {
             int tamanhoAplicativoPadrao = 32;
             int quantidadeMaximaAplicativos = Memoria / tamanhoAplicativoPadrao;
@@ -134,7 +134,7 @@ namespace EntrevistaAvanade.Models
             }
         }
 
-        private void DesinstalarAplicativo(string nomeApp)
+        public override void DesinstalarAplicativo(string nomeApp)
         {
             if (AplicativosInstalados.Contains(nomeApp))
             {

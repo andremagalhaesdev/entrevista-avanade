@@ -6,26 +6,26 @@ namespace EntrevistaAvanade.Models
 {
     public abstract class Smartphone
     {
-        public string Numero { get; set; }
+        protected string Numero { get; set; }
         public string Modelo { get; set; }
         protected string IMEI { get; set; }
         protected int Memoria { get; set; }
-        public List<Veiculo> veiculosEstacionados = new List<Veiculo>();
+        protected List<Veiculo> VeiculosEstacionados = new List<Veiculo>();
 
-        public List<string> AplicativosInstalados { get; set; }
-        public static List<string> BlackListAnatel { get; set; }
+        protected List<string> AplicativosInstalados { get; set; }
+        protected static List<string> BlackListAnatel { get; set; }
 
 
 
-        public Smartphone(string numero, string modelo, string imei, int memoria, List<string> aplicativosInstalados, List<string> blackListAnatel, List<Veiculo> avaParking)
+        public Smartphone(string numeroTelefone, string modeloTelefone, string imeiTelefone, int memoriaTelefone, List<string> aplicativosInstalados, List<string> blackListAnatel, List<Veiculo> avaParking)
         {
-            Numero = numero;
-            Modelo = modelo;
-            IMEI = imei;
-            Memoria = memoria;
+            Numero = numeroTelefone;
+            Modelo = modeloTelefone;
+            IMEI = imeiTelefone;
+            Memoria = memoriaTelefone;
             AplicativosInstalados = aplicativosInstalados;
             BlackListAnatel = blackListAnatel;
-            veiculosEstacionados = avaParking;
+            VeiculosEstacionados = avaParking;
         }
 
         public void ChamadorEmergenciaBot(string numeroParaLigar)
@@ -77,10 +77,13 @@ namespace EntrevistaAvanade.Models
         }
 
         public abstract void InstalarAplicativo(string nomeApp, int espacoNecessario, bool aplicativoCertificado);
+        public abstract void DesinstalarAplicativo(string nomeApp);
 
         public abstract void TirarCelularDoBolso(string modelo);
+        public abstract void CarregarAplicativosInstalados();
 
-        public static void ComunicarPerdaRoubo(string imei)
+
+        protected static void ComunicarPerdaRoubo(string imei)
         {
             Console.WriteLine("Você tem certeza que deseja comunicar a perda/roubo deste aparelho? Digite Sim para confirmar.");
             string confirmacaoComunicarPerdaRoubo = Console.ReadLine();
@@ -157,10 +160,10 @@ namespace EntrevistaAvanade.Models
         }
 
 
-        public void RetirarVeiculoViaApp(string placaVeiculoEmRemocao)
+        protected void RetirarVeiculoViaApp(string placaVeiculoEmRemocao)
         {
             Estacionamento AvaParking = new Estacionamento();
-            Veiculo veiculoEmRemocao = veiculosEstacionados.FirstOrDefault(x => x.Placa == placaVeiculoEmRemocao);
+            Veiculo veiculoEmRemocao = VeiculosEstacionados.FirstOrDefault(x => x.Placa == placaVeiculoEmRemocao);
 
             Console.WriteLine("╔════════════════════════════════════════╗");
             Console.WriteLine("║             AvaParking App             ║");
@@ -170,7 +173,7 @@ namespace EntrevistaAvanade.Models
                 decimal valorDevido = AvaParking.CalcularPrecoTotalDoServicoPorCategoria(veiculoEmRemocao.DataEntrada, veiculoEmRemocao.Categoria, veiculoEmRemocao.DesejaSeguro);
                 if (valorDevido == 0)
                 {
-                    veiculosEstacionados.Remove(veiculoEmRemocao);
+                    VeiculosEstacionados.Remove(veiculoEmRemocao);
                     Console.WriteLine("║    Obrigado por utilizar o AvaParking  ║");
                     Console.WriteLine("║             Volte Sempre!              ║");
                     Console.WriteLine("╚════════════════════════════════════════╝");
@@ -188,7 +191,7 @@ namespace EntrevistaAvanade.Models
                         Console.WriteLine("Processando Pagamento...");
                         Thread.Sleep(2000);
                         Console.WriteLine("Pagamento realizado com sucesso!");
-                        veiculosEstacionados.Remove(veiculoEmRemocao);
+                        VeiculosEstacionados.Remove(veiculoEmRemocao);
                         Thread.Sleep(2000);
                         Console.Clear();
                         Console.WriteLine("║    Obrigado por utilizar o AvaParking  ║");

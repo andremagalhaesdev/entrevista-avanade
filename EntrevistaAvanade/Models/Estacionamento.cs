@@ -14,9 +14,9 @@ namespace EntrevistaAvanade.Models
         private decimal precoPorHora = 2.00M;
         private int capacidadeMaxima = 1;
 
-        public List<Veiculo> veiculosEstacionados = new List<Veiculo>();
+        private List<Veiculo> veiculosEstacionados = new List<Veiculo>();
 
-        private Conversation _conversation;
+        private Conversation conversacaoComIA;
 
         public Estacionamento()
         {
@@ -87,9 +87,7 @@ namespace EntrevistaAvanade.Models
                         }
 
                         string resultadoConsultaPlacaViaApi = ConsultarPlacaViaAPI(placaIdentificada);
-                        Console.WriteLine($"AQUI O RESULTADO DA API {resultadoConsultaPlacaViaApi}");
                         string resultadoConsultaPlacaViaIA = ConsultarPlacaViaIA(resultadoConsultaPlacaViaApi);
-                        Console.WriteLine($"AQUI O RESULTADO DA IA {resultadoConsultaPlacaViaIA}");
 
                         if (resultadoConsultaPlacaViaIA.ToUpper() == "VEICULO ROUBADO")
                         {
@@ -147,7 +145,7 @@ namespace EntrevistaAvanade.Models
             }
         }
 
-        public void CadastrarVeiculo(string placa, int categoria, bool desejaSeguro)
+        private void CadastrarVeiculo(string placa, int categoria, bool desejaSeguro)
         {
             Console.Clear();
             Veiculo novoVeiculo = new Veiculo(placa, DateTime.Now, categoria, desejaSeguro);
@@ -269,7 +267,7 @@ namespace EntrevistaAvanade.Models
 
         }
 
-        public string SensorDePlacas()
+        private string SensorDePlacas()
         {
             Random random = new Random();
 
@@ -285,11 +283,10 @@ namespace EntrevistaAvanade.Models
             return placa;
         }
 
-        public string ConsultarPlacaViaAPI(string placa)
+        private string ConsultarPlacaViaAPI(string placa)
         {
             try
             {
-                return "Trata-se de uma moto";
                 string apiUrl = "https://wdapi2.com.br/consulta/";
                 string apiKey = "30ef7d12555086d6e40c3b44b16a970d";
 
@@ -317,7 +314,7 @@ namespace EntrevistaAvanade.Models
         }
 
 
-        public string ConsultarPlacaViaIA(string respostaApiTratada)
+        private string ConsultarPlacaViaIA(string respostaApiTratada)
         {
             try
             {
@@ -326,15 +323,15 @@ namespace EntrevistaAvanade.Models
 
                 OpenAIAPI api = new OpenAIAPI(apiKey);
 
-                _conversation = api.Chat.CreateConversation();
-                _conversation.Model = Model.ChatGPTTurbo;
-                _conversation.RequestParameters.Temperature = 0;
-                _conversation.AppendSystemMessage(queryApi);
+                conversacaoComIA = api.Chat.CreateConversation();
+                conversacaoComIA.Model = Model.ChatGPTTurbo;
+                conversacaoComIA.RequestParameters.Temperature = 0;
+                conversacaoComIA.AppendSystemMessage(queryApi);
 
-                _conversation.AppendUserInput(respostaApiTratada);
+                conversacaoComIA.AppendUserInput(respostaApiTratada);
 
 
-                string result = _conversation.GetResponseFromChatbotAsync().Result;
+                string result = conversacaoComIA.GetResponseFromChatbotAsync().Result;
 
                 Console.WriteLine(result.ToString());
                 return result.ToString();
@@ -345,7 +342,7 @@ namespace EntrevistaAvanade.Models
             }
         }
 
-        public int InformarCategoriaManualmente()
+        private int InformarCategoriaManualmente()
         {
             while (true)
             {
@@ -371,7 +368,7 @@ namespace EntrevistaAvanade.Models
             }
         }
 
-        public decimal CalcularPrecoSeguroPorCategoria(int categoriaDoVeiculoEstacionado)
+        private decimal CalcularPrecoSeguroPorCategoria(int categoriaDoVeiculoEstacionado)
         {
             switch (categoriaDoVeiculoEstacionado)
             {
@@ -427,7 +424,7 @@ namespace EntrevistaAvanade.Models
 
         }
 
-        public string ObterCategoriaPorCodigo(int categoria)
+        private string ObterCategoriaPorCodigo(int categoria)
         {
             switch (categoria)
             {
@@ -442,7 +439,7 @@ namespace EntrevistaAvanade.Models
             }
         }
 
-        public bool DesejaAdicionarSeguro(int categoria)
+        private bool DesejaAdicionarSeguro(int categoria)
         {
             Console.Clear();
             Console.WriteLine($"Deseja contratar seguro de estacionamento para {ObterCategoriaPorCodigo(categoria)} por apenas R${CalcularPrecoSeguroPorCategoria(categoria)}? \n Digite 1 para SIM, ou qualquer tecla para ignorar.");
@@ -458,14 +455,14 @@ namespace EntrevistaAvanade.Models
             return confirmacaoDeSeguro;
         }
 
-        public void AcionarPolicia()
+        private void AcionarPolicia()
         {
             Smartphone BotPhone = new Android("1234-5678", "BotPhone 3000", "75626348", 64, new List<string>(), new List<string>(), veiculosEstacionados);
             BotPhone.ChamadorEmergenciaBot("190");
             Console.ReadLine();
         }
 
-        static bool ValidarPlaca(string placa)
+        private bool ValidarPlaca(string placa)
         {
             string padrao = @"^[A-Z]{3}\d{4}[A-Z]?$";
             return Regex.IsMatch(placa, padrao);
