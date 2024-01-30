@@ -1,5 +1,6 @@
 ﻿using EntrevistaAvanade.Models;
 Console.OutputEncoding = System.Text.Encoding.UTF8;
+DotNetEnv.Env.Load();
 
 Estacionamento AvaParking = new Estacionamento();
 bool exibirMenu = true;

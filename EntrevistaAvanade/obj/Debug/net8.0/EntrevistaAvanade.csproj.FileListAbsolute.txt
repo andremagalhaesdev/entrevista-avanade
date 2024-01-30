@@ -27,3 +27,6 @@ C:\Users\André Magalhães\Desktop\PROJETOS\PROJETOS C# (.NET)\entrevista-avanad
 C:\Users\André Magalhães\Desktop\PROJETOS\PROJETOS C# (.NET)\entrevista-avanade\EntrevistaAvanade\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
 C:\Users\André Magalhães\Desktop\PROJETOS\PROJETOS C# (.NET)\entrevista-avanade\EntrevistaAvanade\bin\Debug\net8.0\Microsoft.Extensions.Primitives.dll
 C:\Users\André Magalhães\Desktop\PROJETOS\PROJETOS C# (.NET)\entrevista-avanade\EntrevistaAvanade\bin\Debug\net8.0\OpenAI_API.dll
+C:\Users\André Magalhães\Desktop\PROJETOS\PROJETOS C# (.NET)\entrevista-avanade\EntrevistaAvanade\bin\Debug\net8.0\dotenv.net.dll
+C:\Users\André Magalhães\Desktop\PROJETOS\PROJETOS C# (.NET)\entrevista-avanade\EntrevistaAvanade\bin\Debug\net8.0\DotNetEnv.dll
+C:\Users\André Magalhães\Desktop\PROJETOS\PROJETOS C# (.NET)\entrevista-avanade\EntrevistaAvanade\bin\Debug\net8.0\Sprache.dll

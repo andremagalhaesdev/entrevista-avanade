@@ -287,8 +287,9 @@ namespace EntrevistaAvanade.Models
         {
             try
             {
+
                 string apiUrl = "https://wdapi2.com.br/consulta/";
-                string apiKey = "30ef7d12555086d6e40c3b44b16a970d";
+                string apiKey = Environment.GetEnvironmentVariable("API_PLACAS_KEY");
 
                 using (HttpClient client = new HttpClient())
                 {
@@ -318,7 +319,7 @@ namespace EntrevistaAvanade.Models
         {
             try
             {
-                string apiKey = "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";
+                string apiKey = Environment.GetEnvironmentVariable("API_IA_KEY");
                 string queryApi = "Você receberá uma mensagem do tipo Marca: {marca}, Modelo: {modelo}, Restrição: {restricao}. Você deverá analisar e responder com a categoria do veículo. Ex: 1, 2, 3 ou VEICULO ROUBADO. [1 - Moto, 2 - Carro, 3 - Utilitário ou VEICULO ROUBADO - Se o campo restrição apresentar informação de roubo. Caso a resposta não faça sentido, responda ERROR. Não responda nada mais que essas opções.";
 
                 OpenAIAPI api = new OpenAIAPI(apiKey);
