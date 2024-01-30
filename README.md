@@ -69,7 +69,7 @@ completando assim a implementação dos três projetos propostos pelo bootcamp.
 ## Diagrama de Classes
 
 <h1 align="center"> 
-  <img width="800" alt="Diagrama de classe" src="/EntrevistaAvanade/assets/diagrama.uml.readme.png">
+  <img width="800" alt="Diagrama de classe" src="/EntrevistaAvanade/assets/diagrama.uml.readme.jpg">
   </br>
 </h1>
 
