@@ -1,4 +1,4 @@
-# AvaParking - Sistema de Estacionamentos integrado a Smartphones e Testes Unitários
+# AvaParking - Sistema de Estacionamento integrado a Smartphones e Testes Unitários
 
 <h1 align="center">
   <img width="300" alt="AvaParking - Gerenciador de Estacionamentos" src="EntrevistaAvanade/assets/avaparking.readme.png">
