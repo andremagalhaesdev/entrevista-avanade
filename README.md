@@ -37,7 +37,7 @@ completando assim a implementação dos três projetos propostos pelo bootcamp.
 - Sistema de verificação de autenticidade do App a ser instalado;
 - Implementação de arriscadíssimo (10% de chance de sucesso) método de JailBreak que permite instalar aplicativos não certificados (AvaParking).
 
-#### Atenção! JailBreak é uma prática ilegal e não deve ser realizada. Aqui mimetizado apenas para fins de demonstração de métodos randômicos e validação de métodos, além de ser ilegal, pode danificar seriamente seu aparelho, como descrito aqui é também demonstrado.
+#### Atenção! JailBreak é uma prática ilegal e não deve ser realizada. Aqui mimetizado apenas para fins de demonstração de métodos randômicos e validação de métodos, além de ser ilegal, pode danificar seriamente seu aparelho, como descrito e aqui também demonstrado.
 
 
 ## Pré-requisitos
