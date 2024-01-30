@@ -1,4 +1,4 @@
-# AvaParking - Sistema de Estacionamentos integrado a Smartphones e Testes Unitários
+# AvaParking - Sistema de Estacionamento integrado a Smartphones e Testes Unitários
 
 <h1 align="center">
   <img width="300" alt="AvaParking - Gerenciador de Estacionamentos" src="EntrevistaAvanade/assets/avaparking.readme.png">
@@ -69,7 +69,7 @@ completando assim a implementação dos três projetos propostos pelo bootcamp.
 ## Diagrama de Classes
 
 <h1 align="center"> 
-  <img width="800" alt="Diagrama de classe" src="/EntrevistaAvanade/assets/diagrama.uml.readme.jpg">
+  <img width="1000" alt="Diagrama de classe" src="/EntrevistaAvanade/assets/diagrama.uml.readme.png">
   </br>
 </h1>
 
