@@ -288,7 +288,7 @@ namespace EntrevistaAvanade.Models
             try
             {
 
-                string apiUrl = "https://wdapi2.com.br/consulta/";
+                string apiUrl = Environment.GetEnvironmentVariable("API_PLACAS_URL");
                 string apiKey = Environment.GetEnvironmentVariable("API_PLACAS_KEY");
 
                 using (HttpClient client = new HttpClient())
