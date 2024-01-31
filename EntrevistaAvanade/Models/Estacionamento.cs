@@ -20,7 +20,7 @@ namespace EntrevistaAvanade.Models
 
         public Estacionamento()
         {
-            Veiculo veiculoInicial = new Veiculo("RBV6J88", new DateTime(2024, 01, 28, 16, 00, 0), 3, true);
+            Veiculo veiculoInicial = new Veiculo("RBV6J88", new DateTime(2024, 01, 30, 08, 00, 0), 3, true);
             veiculosEstacionados.Add(veiculoInicial);
         }
 
@@ -209,6 +209,7 @@ namespace EntrevistaAvanade.Models
                                         Galaxy.TirarCelularDoBolso(Galaxy.Modelo);
                                         break;
                                     case "3":
+                                        Console.Clear();
                                         Console.WriteLine("Obrigado por utilizar o AvaParking! Até a próxima");
                                         veiculosEstacionados.Remove(veiculoEmRemocao);
                                         menuCelular = false;
@@ -285,9 +286,10 @@ namespace EntrevistaAvanade.Models
 
         private string ConsultarPlacaViaAPI(string placa)
         {
+            return "Trata-se de uma moto";
             try
             {
-
+                DotNetEnv.Env.Load();
                 string apiUrl = Environment.GetEnvironmentVariable("API_PLACAS_URL");
                 string apiKey = Environment.GetEnvironmentVariable("API_PLACAS_KEY");
 
@@ -319,22 +321,22 @@ namespace EntrevistaAvanade.Models
         {
             try
             {
+                DotNetEnv.Env.Load();
+                Console.WriteLine("Cheguei aqui.");
                 string apiKey = Environment.GetEnvironmentVariable("API_IA_KEY");
+                Console.WriteLine("Cheguei aqui.");
                 string queryApi = "Você receberá uma mensagem do tipo Marca: {marca}, Modelo: {modelo}, Restrição: {restricao}. Você deverá analisar e responder com a categoria do veículo. Ex: 1, 2, 3 ou VEICULO ROUBADO. [1 - Moto, 2 - Carro, 3 - Utilitário ou VEICULO ROUBADO - Se o campo restrição apresentar informação de roubo. Caso a resposta não faça sentido, responda ERROR. Não responda nada mais que essas opções.";
-
+                Console.WriteLine("Cheguei aqui.");
                 OpenAIAPI api = new OpenAIAPI(apiKey);
-
+                Console.WriteLine("Cheguei aqui.");
                 conversacaoComIA = api.Chat.CreateConversation();
                 conversacaoComIA.Model = Model.ChatGPTTurbo;
                 conversacaoComIA.RequestParameters.Temperature = 0;
                 conversacaoComIA.AppendSystemMessage(queryApi);
 
                 conversacaoComIA.AppendUserInput(respostaApiTratada);
-
-
+                Console.WriteLine("Cheguei aqui.");
                 string result = conversacaoComIA.GetResponseFromChatbotAsync().Result;
-
-                Console.WriteLine(result.ToString());
                 return result.ToString();
             }
             catch
