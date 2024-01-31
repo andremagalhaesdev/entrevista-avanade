@@ -91,10 +91,20 @@ namespace EntrevistaAvanade.Models
             {
                 Console.WriteLine("Processando...");
                 Thread.Sleep(2000);
-                BlackListAnatel.Add(imei);
-                Console.WriteLine($"O IMEI {imei} foi adicionado à Black List da Anatel. Não será mais possível realizar chamadas.");
-                Console.ReadLine();
-                Console.Clear();
+                if (BlackListAnatel.Contains(imei))
+                {
+                    Console.WriteLine("Este aparelho já está bloqueado por perda/roubo. Procure a Polícia Civil de Pernambuco para mais informações.");
+                    Console.ReadLine();
+                    Console.Clear();
+                    return;
+                }
+                else
+                {
+                    BlackListAnatel.Add(imei);
+                    Console.WriteLine($"O IMEI {imei} foi adicionado à Black List da Anatel. Não será mais possível realizar chamadas.");
+                    Console.ReadLine();
+                    Console.Clear();
+                }
             }
             else
             {
@@ -194,9 +204,13 @@ namespace EntrevistaAvanade.Models
                         VeiculosEstacionados.Remove(veiculoEmRemocao);
                         Thread.Sleep(2000);
                         Console.Clear();
+                        Console.WriteLine("╔════════════════════════════════════════╗");
+                        Console.WriteLine("║             AvaParking App             ║");
+                        Console.WriteLine("╠════════════════════════════════════════╣");
                         Console.WriteLine("║    Obrigado por utilizar o AvaParking  ║");
                         Console.WriteLine("║             Volte Sempre!              ║");
                         Console.WriteLine("╚════════════════════════════════════════╝");
+                        Console.ReadLine();
                     }
                     else if (opcaoPagamentoApp == "2")
                     {
@@ -211,8 +225,8 @@ namespace EntrevistaAvanade.Models
             }
             else
             {
-                Console.WriteLine("║          Veículo não encontrado!       ║");
-                Console.WriteLine("║        Verifique a placa digitada.     ║");
+                Console.WriteLine("║        Veículo não encontrado!         ║");
+                Console.WriteLine("║      Verifique a placa digitada.       ║");
                 Console.WriteLine("╚════════════════════════════════════════╝");
                 Console.ReadLine();
                 Console.Clear();

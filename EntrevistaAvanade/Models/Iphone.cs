@@ -73,7 +73,7 @@ namespace EntrevistaAvanade.Models
                                     Thread.Sleep(2000);
                                     Console.WriteLine("*Lendo QRCode AvaParking...*");
                                     Thread.Sleep(2000);
-                                    InstalarAplicativo("AvaParking", 32, true);
+                                    InstalarAplicativo("AvaParking", 32, false);
                                     Console.Clear();
                                 }
                                 else if (opcaoLojaAppStore == "2")
@@ -93,7 +93,7 @@ namespace EntrevistaAvanade.Models
                                     menuAppStore = false;
 
                                 }
-                                else if (opcaoLojaAppStore == "-do jailbreak -thisiphone --force")
+                                else if (opcaoLojaAppStore == "-do jailbreak -thisiphone --force") // Código que simula um comando de JailBreak
                                 {
                                     RealizarJailBreakNoIphone();
                                     if (SistemaIntegro == false)
@@ -149,7 +149,7 @@ namespace EntrevistaAvanade.Models
             }
             else if (!aplicativoCertificado && IphoneComJailBreak)
             {
-                Console.WriteLine($"Instalando aplicativo \"/{nomeApp}/\" via JailBreak no iPhone.");
+                Console.WriteLine($"Instalando aplicativo \"{nomeApp}\" via JailBreak no iPhone.");
                 AplicativosInstalados.Add(nomeApp);
                 Memoria -= tamanhoApp;
                 Console.WriteLine($"\"{nomeApp}\" instalado com sucesso!");

@@ -20,6 +20,7 @@ namespace EntrevistaAvanade.Models
 
         public Estacionamento()
         {
+            // Veiculo veiculoInicial = new Veiculo("RBV6J88", new DateTime(2024, 01, 31, 08, 00, 0), 3, true);
             Veiculo veiculoInicial = new Veiculo("RBV6J88", new DateTime(2024, 01, 30, 08, 00, 0), 3, true);
             veiculosEstacionados.Add(veiculoInicial);
         }
