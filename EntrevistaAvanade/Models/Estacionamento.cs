@@ -384,6 +384,12 @@ namespace EntrevistaAvanade.Models
         {
             decimal precoTotal;
 
+            // Verifica se o sistema do usuário está desatualizado
+            if (DateTime.Now < dataDeEntrada)
+            {
+                throw new InvalidOperationException("Sistema desatualizado. Verifique sua data e hora e tente novamente.");
+            }
+
             double minutosDecorridos = (DateTime.Now - dataDeEntrada).TotalMinutes;
 
             if (minutosDecorridos <= 15)
